@@ -1,0 +1,46 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quando&display=swap');
+
+/* Global styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    padding: 1.2rem;
+    color: black;
+    line-height: 1.5;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.wrapper {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quando', serif;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    max-height: auto; 
+}
+
+@media screen and (min-width: 650px) {
+
+    nav ul li {
+        display: inline-block;
+        margin-right: 3rem;
+    }
+}
+
+/* DESKTOP SCREEN */
+@media screen and (min-width: 900px) {
+
+
+
+}
