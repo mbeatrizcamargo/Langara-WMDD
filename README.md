@@ -10,7 +10,7 @@ Templates:
 Notes:
 - organized by term > subject > week
 - each term is inside a section tag, with 2 classes: "terms" and "term$", $ being the number of the term
-- each subject is inside an article tag, with 2 classes: "subjects" and "xxxx-nnnn" this last one being the code of the subject
+- each subject is inside an article tag, with 2 classes: "subjects" and "xxxxnnnn" this last one being the code of the subject
 - each subject has its own folder, where the weekly pages are organized
 - each subject folder is named "nn-xxxx-nnnn" -> number of the term followed by subject code
 - each week is named using the subject code followed by the number of the week, using "week$$"
