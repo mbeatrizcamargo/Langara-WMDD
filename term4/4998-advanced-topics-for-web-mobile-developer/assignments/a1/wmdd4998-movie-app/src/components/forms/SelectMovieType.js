@@ -13,8 +13,8 @@ const SelectMovieType = ({ onInputChange }) => {
 
     return (
         <SafeAreaView>
-            <Center width="$full">
-                <Select my={20} onValueChange={handleValueChange}>
+            {/* <Center width="100%" id='select-movie-type-center'> */}
+                <Select my={20} onValueChange={handleValueChange} id='select-movie-type-select'>
                     <SelectTrigger variant="outline" size="md">
                         <SelectInput placeholder="Select option" />
                         <SelectIcon mr="$3">
@@ -34,7 +34,7 @@ const SelectMovieType = ({ onInputChange }) => {
                         </SelectContent>
                     </SelectPortal>
                 </Select>
-            </Center>
+            {/* </Center> */}
         </SafeAreaView>
     );
 };

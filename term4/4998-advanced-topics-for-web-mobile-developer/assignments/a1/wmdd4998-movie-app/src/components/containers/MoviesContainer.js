@@ -35,9 +35,9 @@ const MoviesContainer = ({ navigation }) => {
     };
 
     return (
-        <Center>
-            <SelectMovieType onInputChange={handleInputChange} width='100%' />
-            {isLoading ? <Loading /> : <MoviesList navigation={navigation} movies={movies} />}
+        <Center width='100%' id='movies-container-center'>
+            <SelectMovieType onInputChange={handleInputChange} width='100%' id='movies-container-select-movie-type' />
+            {isLoading ? <Loading /> : <MoviesList navigation={navigation} movies={movies} id='movies-container-movies-list' />}
         </Center>
     );
 };

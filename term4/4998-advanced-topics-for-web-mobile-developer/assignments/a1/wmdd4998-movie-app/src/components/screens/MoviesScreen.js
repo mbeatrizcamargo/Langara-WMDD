@@ -4,7 +4,7 @@ import MoviesContainer from "../containers/MoviesContainer";
 const MoviesScreen = ({ navigation }) => {
     return (
         <SafeAreaView>
-            <MoviesContainer navigation={navigation} />
+            <MoviesContainer navigation={navigation} width='100%' />
         </SafeAreaView>
     );
 };

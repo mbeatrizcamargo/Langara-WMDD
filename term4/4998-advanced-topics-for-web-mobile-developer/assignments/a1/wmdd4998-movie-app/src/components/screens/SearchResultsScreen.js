@@ -2,8 +2,6 @@ import { Box, StatusBar, Text } from "@gluestack-ui/themed";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchForm from "../forms/SearchForm";
 import { useState } from "react";
-import MoviesContainer from "../containers/MoviesContainer";
-import TVShowsContainer from "../containers/TVShowsContainer";
 import SearchResultsContainer from "../containers/SearchResultsContainer";
 
 const SearchResultsScreen = () => {
@@ -24,7 +22,7 @@ const SearchResultsScreen = () => {
                 isVisible ? (
                     <Text>Please initiate a search</Text>
                 ) : (
-                    <SearchResultsContainer keyword={keyword}/>
+                    <SearchResultsContainer typeOfShow={typeOfShow} keyword={keyword} />
                 )
             }
         </SafeAreaView>

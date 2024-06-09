@@ -20,8 +20,9 @@ export async function getShows(typeOfShow, keyword) {
 
 export async function searchShows(typeOfShow, keyword) {
     try {
-        const response = await axios.get(`${BASE_URL}search/${typeOfShow}?query=${keyword}`, {
+        const response = await axios.get(`${BASE_URL}search/${typeOfShow}?`, {
             params: {
+                query: encodeURIComponent(keyword),
                 api_key: API_KEY
             },
             paramsSerializer: params => qs.stringify(params)

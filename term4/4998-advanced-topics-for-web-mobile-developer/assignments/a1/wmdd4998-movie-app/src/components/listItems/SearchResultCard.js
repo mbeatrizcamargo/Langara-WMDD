@@ -58,7 +58,7 @@ const SearchResultCard = ({ typeOfShow, image, title, popularity, releaseDate, n
                             flex: 1,
                         },
                     }}
-                    onPress={() => navigation.navigate(`${typeOfShow} Details`, { id })}
+                    onPress={() => navigation.navigate(`Search Details`, { id })}
                 >
                     <ButtonText>
                         More Details
