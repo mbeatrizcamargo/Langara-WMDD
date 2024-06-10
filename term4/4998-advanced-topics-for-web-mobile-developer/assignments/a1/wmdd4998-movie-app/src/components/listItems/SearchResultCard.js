@@ -1,15 +1,17 @@
 import { Box, Button, ButtonText, Card, HStack, Heading, Image, Text, VStack } from "@gluestack-ui/themed";
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from "react-native";
 
-const SearchResultCard = ({ typeOfShow, image, title, popularity, releaseDate, navigation, id }) => {
+const SearchResultCard = ({ typeOfShow, image, title, popularity, releaseDate, id }) => {
+    const navigation = useNavigation();
+
     return (
-        <Card p="$5" borderRadius="$lg" maxWidth={360} m="$3">
+        <Card p="$5" maxWidth={360} m="$3">
             <HStack>
                 <Image
                     mb="$6"
                     h={240}
                     width="$full"
-                    borderRadius="$md"
                     source={{ uri: image }}
                     alt=""
                 />
@@ -58,7 +60,7 @@ const SearchResultCard = ({ typeOfShow, image, title, popularity, releaseDate, n
                             flex: 1,
                         },
                     }}
-                    onPress={() => navigation.navigate(`Search Details`, { id })}
+                    onPress={() => navigation.navigate('Search Details', { id, typeOfShow })}
                 >
                     <ButtonText>
                         More Details

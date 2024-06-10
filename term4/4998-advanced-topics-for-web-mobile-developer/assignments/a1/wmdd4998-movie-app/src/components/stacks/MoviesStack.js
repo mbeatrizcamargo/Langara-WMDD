@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 const MoviesStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Movie List" component={MoviesScreen} />
+      <Stack.Screen name="Movie List" component={MoviesScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Movie Details" component={ShowMovieScreen} />
     </Stack.Navigator>
   );

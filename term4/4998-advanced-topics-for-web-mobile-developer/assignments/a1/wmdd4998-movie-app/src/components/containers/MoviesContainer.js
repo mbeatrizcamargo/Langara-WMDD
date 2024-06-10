@@ -1,4 +1,4 @@
-import { Center } from "@gluestack-ui/themed";
+import { Box, Center } from "@gluestack-ui/themed";
 import SelectMovieType from "../forms/SelectMovieType";
 import { getShows } from "../../services/api";
 import { useState, useEffect } from "react";
@@ -35,10 +35,10 @@ const MoviesContainer = ({ navigation }) => {
     };
 
     return (
-        <Center width='100%' id='movies-container-center'>
-            <SelectMovieType onInputChange={handleInputChange} width='100%' id='movies-container-select-movie-type' />
-            {isLoading ? <Loading /> : <MoviesList navigation={navigation} movies={movies} id='movies-container-movies-list' />}
-        </Center>
+        <Box width='100%' bg='white'>
+            <SelectMovieType onInputChange={handleInputChange} width='100%' bg='white' />
+            {isLoading ? <Loading /> : <MoviesList navigation={navigation} movies={movies} w='100%' />}
+        </Box>
     );
 };
 

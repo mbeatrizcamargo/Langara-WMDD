@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Center, Divider, HStack, Heading, Image, Text, VStack } from "@gluestack-ui/themed";
+import { Box, Card, Center, Divider, HStack, Heading, Image, Text, VStack } from "@gluestack-ui/themed";
 import { getShows } from "../../services/api";
 
 const MovieDetails = ({ route, navigation }) => {
@@ -30,29 +30,29 @@ const MovieDetails = ({ route, navigation }) => {
     const { title, poster_path, popularity, release_date, overview } = movieDetails;
 
     return (
-        <Center>
+        <Box px={40}>
             <VStack>
-                <Heading>
+                <Heading textAlign="center" size='lg' my={30}>
                     {title}
                 </Heading>
-                <Image
-                    mb="$6"
-                    h={240}
-                    width="$full"
-                    borderRadius="$md"
-                    source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
-                    alt={title}
-                />
-                <Text>
+                <Center>
+                    <Image
+                        mb="$6"
+                        source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
+                        alt={title}
+                        size='2xl'
+                    />
+                </Center>
+                <Text mb={5}>
                     {overview}
                 </Text>
-                <HStack>
-                    <Text>Popularity: {popularity}</Text>
-                    <Divider orientation='vertical' mx={2} />
-                    <Text>Release date: {release_date}</Text>
+                <HStack mt={10} flexShrink={1}>
+                    <Text fontWeight='bold' size='sm'>Popularity: {popularity}</Text>
+                    <Divider orientation='vertical' mx={10} />
+                    <Text fontWeight='bold' size='sm'>Release date: {release_date}</Text>
                 </HStack>
             </VStack>
-        </Center>
+        </Box>
     );
 };
 

@@ -39,7 +39,6 @@ const TVShowDetails = ({ route, navigation }) => {
                     mb="$6"
                     h={240}
                     width="$full"
-                    borderRadius="$md"
                     source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
                     alt={title}
                 />

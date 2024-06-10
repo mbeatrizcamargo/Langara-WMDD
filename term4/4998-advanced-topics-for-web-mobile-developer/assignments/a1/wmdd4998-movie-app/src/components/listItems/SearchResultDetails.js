@@ -4,12 +4,12 @@ import { getShows } from "../../services/api";
 
 const SearchResultDetails = ({ route, navigation }) => {
     const [searchResultDetails, setSearchResultDetails] = useState(null);
-    const { id } = route.params;
+    const { id, typeOfShow } = route.params;
 
     useEffect(() => {
         const fetchSearchResultDetails = async () => {
             try {
-                const data = await searchShows('tv', id);
+                const data = await getShows(typeOfShow, id);
                 setSearchResultDetails(data);
             } catch (error) {
                 console.error('Error fetching details:', error);
@@ -17,7 +17,7 @@ const SearchResultDetails = ({ route, navigation }) => {
         };
 
         fetchSearchResultDetails();
-    }, [id]);
+    }, [id, typeOfShow]);
 
     if (!searchResultDetails) {
         return (
@@ -39,7 +39,6 @@ const SearchResultDetails = ({ route, navigation }) => {
                     mb="$6"
                     h={240}
                     width="$full"
-                    borderRadius="$md"
                     source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
                     alt={title}
                 />

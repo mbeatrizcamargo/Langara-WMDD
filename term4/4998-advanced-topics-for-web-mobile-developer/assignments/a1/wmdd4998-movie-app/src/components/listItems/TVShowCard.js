@@ -3,13 +3,12 @@ import { StyleSheet } from "react-native";
 
 const TVShowCard = ({ image, title, popularity, releaseDate, url, navigation, id }) => {
     return (
-        <Card p="$5" borderRadius="$lg" maxWidth={360} m="$3">
+        <Card p="$5" maxWidth={360} m="$3">
             <HStack>
                 <Image
                     mb="$6"
                     h={240}
                     width="$full"
-                    borderRadius="$md"
                     source={{ uri: image }}
                     alt=""
                 />

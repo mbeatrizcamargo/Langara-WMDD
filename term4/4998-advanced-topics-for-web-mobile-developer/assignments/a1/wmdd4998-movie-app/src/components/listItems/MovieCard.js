@@ -3,68 +3,66 @@ import { StyleSheet } from "react-native";
 
 const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id }) => {
     return (
-        <Card p="$5" borderRadius="$lg" maxWidth={360} m="$3">
-            <HStack>
-                <Image
-                    mb="$6"
-                    h={240}
-                    width="$full"
-                    borderRadius="$md"
-                    source={{ uri: image }}
-                    alt=""
-                />
+        <Card p="$5" m="0" w='100%' >
+            <HStack w='100%' space='md'>
+                    <Image
+                        mb="$6"
+                        size='xl'
+                        source={{ uri: image }}
+                        alt=""
+                    />
+                <VStack flexShrink={1}>
+                    <Heading size="sm" fontFamily="$heading" mb="$1">
+                        {title}
+                    </Heading>
+                    <Text
+                        fontSize="$sm"
+                        fontStyle="normal"
+                        fontFamily="$heading"
+                        fontWeight="$normal"
+                        lineHeight="$sm"
+                        mb="$1"
+                        sx={{
+                            color: "$textLight700",
+                            _dark: {
+                                color: "$textDark200",
+                            },
+                        }}
+                    >
+                        Popularity: {popularity}
+                    </Text>
+                    <Text size="sm" fontFamily="$heading" mB="$1">
+                        Release date: {releaseDate}
+                    </Text>
+                    <Button
+                        px="$4"
+                        py="$2"
+                        variant="solid"
+                        fontFamily="$heading"
+                        borderColor="$borderLight300"
+                        $dark-borderColor="$backgroundDark600"
+                        bg='#00BFFF'
+                        width='90%'
+                        my="$1"
+                        sx={{
+                            "@sm": {
+                                flex: 1,
+                                display: 'inline'
+                            },
+                            ':active': {
+                                backgroundColor: '#009fd4'
+                            }
+                        }}
+                        onPress={() => navigation.navigate('Movie Details', { id })}
+                    >
+                        <ButtonText>
+                            More Details
+                        </ButtonText>
+                    </Button>
+                </VStack>
             </HStack>
-            <Text
-                fontSize="$sm"
-                fontStyle="normal"
-                fontFamily="$heading"
-                fontWeight="$normal"
-                lineHeight="$sm"
-                mb="$2"
-                sx={{
-                    color: "$textLight700",
-                    _dark: {
-                        color: "$textDark200",
-                    },
-                }}
-            >
-                Popularity: {popularity}
-            </Text>
-            <VStack mb="$6">
-                <Heading size="md" fontFamily="$heading" mb="$4">
-                    {title}
-                </Heading>
-                <Text size="sm" fontFamily="$heading">
-                    Release date: {releaseDate}
-                </Text>
-            </VStack>
-            <Box
-                flexDirection="column"
-                sx={{
-                    "@sm": {
-                        flexDirection: "row",
-                    },
-                }}
-            >
-                <Button
-                    px="$4"
-                    py="$2"
-                    variant="solid"
-                    fontFamily="$heading"
-                    borderColor="$borderLight300"
-                    $dark-borderColor="$backgroundDark600"
-                    sx={{
-                        "@sm": {
-                            flex: 1,
-                        },
-                    }}
-                    onPress={() => navigation.navigate('Movie Details', { id })}
-                >
-                    <ButtonText>
-                        More Details
-                    </ButtonText>
-                </Button>
-            </Box>
+
+
         </Card>
     );
 };
