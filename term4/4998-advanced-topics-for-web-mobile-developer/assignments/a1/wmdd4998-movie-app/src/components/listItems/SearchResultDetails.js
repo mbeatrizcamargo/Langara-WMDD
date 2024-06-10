@@ -3,24 +3,24 @@ import { Box, Center, Divider, HStack, Heading, Image, Text, VStack } from "@glu
 import { getShows } from "../../services/api";
 import { StyleSheet } from "react-native";
 
-const TVShowDetails = ({ route, navigation }) => {
-    const [tvShowDetails, setTVShowDetails] = useState(null);
-    const { id } = route.params;
+const SearchResultDetails = ({ route, navigation }) => {
+    const [searchResultDetails, setSearchResultDetails] = useState(null);
+    const { id, typeOfShow } = route.params;
 
     useEffect(() => {
-        const fetchTVShowDetails = async () => {
+        const fetchSearchResultDetails = async () => {
             try {
-                const data = await getShows('tv', id);
-                setTVShowDetails(data);
+                const data = await getShows(typeOfShow, id);
+                setSearchResultDetails(data);
             } catch (error) {
-                console.error('Error fetching tv show details:', error);
+                console.error('Error fetching details:', error);
             }
         };
 
-        fetchTVShowDetails();
-    }, [id]);
+        fetchSearchResultDetails();
+    }, [id, typeOfShow]);
 
-    if (!tvShowDetails) {
+    if (!searchResultDetails) {
         return (
             <Center>
                 <Text>Loading...</Text>
@@ -28,18 +28,18 @@ const TVShowDetails = ({ route, navigation }) => {
         );
     }
 
-    const { original_name, poster_path, popularity, first_air_date, overview } = tvShowDetails;
+    const { title, poster_path, popularity, release_date, overview } = searchResultDetails;
 
     return (
         <Box style={styles.box}>
             <VStack>
                 <Heading size='xl' style={styles.heading}>
-                    {original_name}
+                    {title}
                 </Heading>
                 <Center>
                     <Image
                         source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
-                        alt={original_name}
+                        alt={title}
                         size='2xl'
                         style={styles.image}
                     />
@@ -48,12 +48,21 @@ const TVShowDetails = ({ route, navigation }) => {
                     {overview}
                 </Text>
                 <HStack style={styles.hstack}>
-                    <Text size='sm' style={styles.text}>
+                    <Text
+                        size='sm'
+                        style={styles.text}
+                    >
                         Popularity: {popularity}
                     </Text>
-                    <Divider orientation='vertical' style={styles.divider} />
-                    <Text size='sm' style={styles.text}>
-                        Release date: {first_air_date}
+                    <Divider
+                        orientation='vertical'
+                        style={styles.divider}
+                    />
+                    <Text
+                        size='sm'
+                        style={styles.text}
+                    >
+                        Release date: {release_date}
                     </Text>
                 </HStack>
             </VStack>
@@ -90,4 +99,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TVShowDetails;
+export default SearchResultDetails;

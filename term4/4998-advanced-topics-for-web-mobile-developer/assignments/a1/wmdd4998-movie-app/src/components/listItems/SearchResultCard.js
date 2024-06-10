@@ -1,10 +1,12 @@
-import { Box, Button, ButtonText, Card, HStack, Heading, Image, Text, VStack } from "@gluestack-ui/themed";
+import { Button, ButtonText, Card, HStack, Heading, Image, Text, VStack } from "@gluestack-ui/themed";
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from "react-native";
 
-const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id }) => {
-    return (
+const SearchResultCard = ({ typeOfShow, image, title, popularity, releaseDate, id }) => {
+    const navigation = useNavigation();
 
-        <Card style={styles.card} >
+    return (
+        <Card style={styles.card}>
             <HStack space='md' style={styles.hstack}>
                 <Image
                     size='xl'
@@ -12,31 +14,31 @@ const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id 
                     alt=""
                 />
                 <VStack style={styles.vstack}>
-                    <Heading size="sm" fontFamily="$heading" styles={styles.heading}>
+                    <Heading size="md" fontFamily="$heading" styles={styles.heading}>
                         {title}
                     </Heading>
                     <Text
                         style={styles.text}
                         fontSize="$sm"
+                        fontFamily="$heading"
                         lineHeight="$sm"
                     >
                         Popularity: {popularity}
                     </Text>
                     <Text
-                    size="sm"
-                    fontFamily="$heading"
-                    style={styles.text}
+                        style={styles.text}
+                        size="sm"
+                        fontFamily="$heading"
                     >
                         Release date: {releaseDate}
                     </Text>
-
                     <Button
                         style={styles.button}
                         variant="solid"
                         fontFamily="$heading"
                         borderColor="$borderLight300"
                         $dark-borderColor="$backgroundDark600"
-                        onPress={() => navigation.navigate('Movie Details', { id })}
+                        onPress={() => navigation.navigate('Search Details', { id, typeOfShow })}
                     >
                         <ButtonText>
                             More Details
@@ -49,10 +51,9 @@ const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id 
 };
 
 const styles = StyleSheet.create({
-
     button: {
         backgroundColor: '#00BFFF',
-        width: 150,
+        width: 180,
         marginTop: 1,
         marginBottom: 1,
         paddingTop: 2,
@@ -81,4 +82,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MovieCard;
+export default SearchResultCard;

@@ -1,9 +1,11 @@
-import { Center } from "@gluestack-ui/themed";
+
+import { Box } from "@gluestack-ui/themed";
 import SelectMovieType from "../forms/SelectMovieType";
 import { getShows } from "../../services/api";
 import { useState, useEffect } from "react";
 import MoviesList from "../lists/MoviesList";
 import Loading from "../layout/Loading";
+import { StyleSheet } from "react-native";
 
 const MoviesContainer = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -35,11 +37,19 @@ const MoviesContainer = ({ navigation }) => {
     };
 
     return (
-        <Center>
-            <SelectMovieType onInputChange={handleInputChange} width='100%' />
+
+        <Box style={styles.main} >
+            <SelectMovieType onInputChange={handleInputChange} />
             {isLoading ? <Loading /> : <MoviesList navigation={navigation} movies={movies} />}
-        </Center>
+        </Box>
     );
 };
+
+const styles = StyleSheet.create({
+    main: {
+        width: '100%',
+        backgroundColor: 'white'
+    }
+})
 
 export default MoviesContainer;

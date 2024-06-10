@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text } from '@gluestack-ui/themed';
+import { Box } from '@gluestack-ui/themed';
 import MovieDetails from '../listItems/MovieDetails';
 
 const ShowMovieScreen = ({ route, navigation }) => {
