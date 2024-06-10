@@ -54,6 +54,7 @@ const SelectMovieType = ({ onInputChange }) => {
                     </Select>
                 </Center>
             </Box>
+
         </SafeAreaView>
     );
 };

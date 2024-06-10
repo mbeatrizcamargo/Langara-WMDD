@@ -36,6 +36,7 @@ const TVShowsContainer = ({ navigation }) => {
     };
 
     return (
+
         <Box style={styles.main} >
             <SelectTVShowType onInputChange={handleInputChange} width='100%' />
             {isLoading ? <Loading /> : <TVShowsList navigation={navigation} tvShows={tvShows} />}

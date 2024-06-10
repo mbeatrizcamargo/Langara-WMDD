@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 
 const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id }) => {
     return (
+
         <Card style={styles.card} >
             <HStack space='md' style={styles.hstack}>
                 <Image
@@ -48,6 +49,7 @@ const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id 
 };
 
 const styles = StyleSheet.create({
+
     button: {
         backgroundColor: '#00BFFF',
         width: 150,

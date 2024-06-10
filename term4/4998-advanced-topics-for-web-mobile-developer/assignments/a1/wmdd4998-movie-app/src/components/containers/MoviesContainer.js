@@ -1,3 +1,4 @@
+
 import { Box } from "@gluestack-ui/themed";
 import SelectMovieType from "../forms/SelectMovieType";
 import { getShows } from "../../services/api";
@@ -36,6 +37,7 @@ const MoviesContainer = ({ navigation }) => {
     };
 
     return (
+
         <Box style={styles.main} >
             <SelectMovieType onInputChange={handleInputChange} />
             {isLoading ? <Loading /> : <MoviesList navigation={navigation} movies={movies} />}
