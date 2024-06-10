@@ -3,56 +3,32 @@ import { StyleSheet } from "react-native";
 
 const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id }) => {
     return (
-        <Card p="$5" m="0" w='100%' >
-            <HStack w='100%' space='md'>
+        <Card style={styles.card} >
+            <HStack space='md' style={styles.hstack}>
                     <Image
-                        mb="$6"
                         size='xl'
                         source={{ uri: image }}
                         alt=""
                     />
-                <VStack flexShrink={1}>
-                    <Heading size="sm" fontFamily="$heading" mb="$1">
+                <VStack style={styles.vstack}>
+                    <Heading size="sm" fontFamily="$heading" styles={styles.heading}>
                         {title}
                     </Heading>
-                    <Text
+                    <Text style={styles.text}
                         fontSize="$sm"
-                        fontStyle="normal"
                         fontFamily="$heading"
-                        fontWeight="$normal"
                         lineHeight="$sm"
-                        mb="$1"
-                        sx={{
-                            color: "$textLight700",
-                            _dark: {
-                                color: "$textDark200",
-                            },
-                        }}
                     >
                         Popularity: {popularity}
                     </Text>
-                    <Text size="sm" fontFamily="$heading" mB="$1">
+                    <Text size="sm" fontFamily="$heading" mb="$1">
                         Release date: {releaseDate}
                     </Text>
-                    <Button
-                        px="$4"
-                        py="$2"
+                    <Button style={styles.button}
                         variant="solid"
                         fontFamily="$heading"
                         borderColor="$borderLight300"
                         $dark-borderColor="$backgroundDark600"
-                        bg='#00BFFF'
-                        width='90%'
-                        my="$1"
-                        sx={{
-                            "@sm": {
-                                flex: 1,
-                                display: 'inline'
-                            },
-                            ':active': {
-                                backgroundColor: '#009fd4'
-                            }
-                        }}
                         onPress={() => navigation.navigate('Movie Details', { id })}
                     >
                         <ButtonText>
@@ -61,18 +37,39 @@ const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id 
                     </Button>
                 </VStack>
             </HStack>
-
-
         </Card>
     );
 };
 
 const styles = StyleSheet.create({
-    image: {
-        padding: 0,
+    button: {
+        backgroundColor: '#00BFFF',
+        width: '90%',
+        marginTop: 1,
+        marginBottom: 1,
+        paddingTop: 2,
+        paddingBottom: 2,
+        paddingLeft: 4,
+        paddingRight: 4
+    },
+    card: {
+        padding: 10,
+        paddingTop: 15,
+        paddingBottom: 15,
+        margin: 0,
+        width: '100%'
+    },
+    heading: {
+        marginBottom: 1
+    },
+    hstack: {
+        width: '100%'
+    },
+    vstack: {
+        flexShrink: 1
     },
     text: {
-        marginTop: 10,
+        marginBottom: 1
     },
 });
 

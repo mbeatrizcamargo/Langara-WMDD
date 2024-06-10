@@ -32,51 +32,23 @@ const SelectMovieType = ({ onInputChange }) => {
                                 <SelectItem
                                     label="popular"
                                     value="popular"
-                                    style={({ isSelected }) => isSelected ? styles.selectedItem : styles.unselectedItem}
-                                >
-                                    {({ isSelected }) => (
-                                        <>
-                                            {isSelected && <Icon as={CheckIcon} color="white" mr={2} />}
-                                            <Text style={isSelected ? styles.selectedText : styles.unselectedText}>popular</Text>
-                                        </>
-                                    )}
-                                </SelectItem>
+                                    style={styles.item}
+                                />
                                 <SelectItem
                                     label="now_playing"
                                     value="now_playing"
-                                    style={({ isSelected }) => isSelected ? styles.selectedItem : styles.unselectedItem}
-                                >
-                                    {({ isSelected }) => (
-                                        <>
-                                            {isSelected && <Icon as={CheckIcon} color="white" mr={2} />}
-                                            <Text style={isSelected ? styles.selectedText : styles.unselectedText}>now_playing</Text>
-                                        </>
-                                    )}
-                                </SelectItem>
+                                    style={styles.item}
+                                />
                                 <SelectItem
                                     label="top_rated"
                                     value="top_rated"
-                                    style={({ isSelected }) => isSelected ? styles.selectedItem : styles.unselectedItem}
-                                >
-                                    {({ isSelected }) => (
-                                        <>
-                                            {isSelected && <Icon as={CheckIcon} color="white" mr={2} />}
-                                            <Text style={isSelected ? styles.selectedText : styles.unselectedText}>now_playing</Text>
-                                        </>
-                                    )}
-                                </SelectItem>
+                                    style={styles.item}
+                                />
                                 <SelectItem
                                     label="upcoming"
                                     value="upcoming"
-                                    style={({ isSelected }) => isSelected ? styles.selectedItem : styles.unselectedItem}
-                                >
-                                    {({ isSelected }) => (
-                                        <>
-                                            {isSelected && <Icon as={CheckIcon} color="white" mr={2} />}
-                                            <Text style={isSelected ? styles.selectedText : styles.unselectedText}>upcoming</Text>
-                                        </>
-                                    )}
-                                </SelectItem>
+                                    style={styles.item}
+                                />
                             </SelectContent>
                         </SelectPortal>
                     </Select>
@@ -87,30 +59,9 @@ const SelectMovieType = ({ onInputChange }) => {
 };
 
 const styles = StyleSheet.create({
-    inputStyles: { flex: 1, alignItems: 'center' },
-    errorText: {
-        color: 'red',
-        marginTop: 5,
-        fontSize: 12,
-    },
-    selectedItem: {
-        backgroundColor: 'green',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-    },
-    unselectedItem: {
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-    },
-    selectedText: {
-        color: 'white',
-    },
-    unselectedText: {
-        color: 'black',
-    },
+    item: {
+
+    }
 });
 
 export default SelectMovieType;

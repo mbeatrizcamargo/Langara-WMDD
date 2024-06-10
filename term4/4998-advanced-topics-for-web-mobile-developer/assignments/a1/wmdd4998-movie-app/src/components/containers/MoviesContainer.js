@@ -4,6 +4,7 @@ import { getShows } from "../../services/api";
 import { useState, useEffect } from "react";
 import MoviesList from "../lists/MoviesList";
 import Loading from "../layout/Loading";
+import { StyleSheet } from "react-native";
 
 const MoviesContainer = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -35,11 +36,18 @@ const MoviesContainer = ({ navigation }) => {
     };
 
     return (
-        <Box width='100%' bg='white'>
-            <SelectMovieType onInputChange={handleInputChange} width='100%' bg='white' />
-            {isLoading ? <Loading /> : <MoviesList navigation={navigation} movies={movies} w='100%' />}
+        <Box style={styles.main} >
+            <SelectMovieType onInputChange={handleInputChange} />
+            {isLoading ? <Loading /> : <MoviesList navigation={navigation} movies={movies} />}
         </Box>
     );
 };
+
+const styles = StyleSheet.create({
+    main: {
+        width: '100%',
+        backgroundColor: 'white'
+    }
+})
 
 export default MoviesContainer;

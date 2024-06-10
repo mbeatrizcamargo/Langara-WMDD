@@ -1,10 +1,11 @@
 import { Center, Divider, FlatList } from "@gluestack-ui/themed";
 import MovieCard from "../listItems/MovieCard";
+import { StyleSheet } from "react-native";
 
 const MoviesList = ({ navigation, movies }) => {
     return (
-        <Center w='100%' >
-            <FlatList width='100%'
+        <Center style={styles.main} >
+            <FlatList style={styles.main}
                 data={movies.results}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
@@ -15,11 +16,17 @@ const MoviesList = ({ navigation, movies }) => {
                         releaseDate={item.release_date}
                         navigation={navigation}
                         id={item.id}
-                        width='100%' /><Divider /></>
+                        style={styles.main} /><Divider /></>
                     )}
             />
         </Center>
     );
 };
+
+const styles = StyleSheet.create({
+    main: {
+        width: '100%'
+    }
+})
 
 export default MoviesList;
