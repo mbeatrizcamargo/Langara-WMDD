@@ -31,9 +31,9 @@ const MovieDetails = ({ route, navigation }) => {
     const { title, poster_path, popularity, release_date, overview } = movieDetails;
 
     return (
-        <Box px={40}>
+        <Box style={styles.box}>
             <VStack>
-                <Heading size='lg' style={styles.heading}>
+                <Heading size='xl' style={styles.heading}>
                     {title}
                 </Heading>
                 <Center>
@@ -48,9 +48,13 @@ const MovieDetails = ({ route, navigation }) => {
                     {overview}
                 </Text>
                 <HStack style={styles.hstack}>
-                    <Text size='sm' style={styles.text}>Popularity: {popularity}</Text>
+                    <Text size='sm' style={styles.text}>
+                        Popularity: {popularity}
+                    </Text>
                     <Divider orientation='vertical' style={styles.divider} />
-                    <Text size='sm' style={styles.text}>Release date: {release_date}</Text>
+                    <Text size='sm' style={styles.text}>
+                        Release date: {release_date}
+                    </Text>
                 </HStack>
             </VStack>
         </Box>
@@ -58,6 +62,10 @@ const MovieDetails = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
+    box: {
+        paddingLeft: 40,
+        paddingRight: 40
+    },
     divider: {
         marginLeft: 10,
         marginRight: 10
@@ -77,7 +85,7 @@ const styles = StyleSheet.create({
     overview: {
         marginBottom: 6
     },
-    textBold: {
+    text: {
         fontWeight: 'bold'
     }
 })

@@ -5,11 +5,11 @@ const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id 
     return (
         <Card style={styles.card} >
             <HStack space='md' style={styles.hstack}>
-                    <Image
-                        size='xl'
-                        source={{ uri: image }}
-                        alt=""
-                    />
+                <Image
+                    size='xl'
+                    source={{ uri: image }}
+                    alt=""
+                />
                 <VStack style={styles.vstack}>
                     <Heading size="sm" fontFamily="$heading" styles={styles.heading}>
                         {title}
@@ -24,7 +24,9 @@ const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id 
                     <Text size="sm" fontFamily="$heading" mb="$1">
                         Release date: {releaseDate}
                     </Text>
-                    <Button style={styles.button}
+                    
+                    <Button
+                        style={styles.button}
                         variant="solid"
                         fontFamily="$heading"
                         borderColor="$borderLight300"

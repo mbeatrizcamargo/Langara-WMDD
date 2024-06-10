@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Center, Divider, HStack, Heading, Image, Text, VStack } from "@gluestack-ui/themed";
+import { Box, Center, Divider, HStack, Heading, Image, Text, VStack } from "@gluestack-ui/themed";
 import { getShows } from "../../services/api";
+import { StyleSheet } from "react-native";
 
 const TVShowDetails = ({ route, navigation }) => {
     const [tvShowDetails, setTVShowDetails] = useState(null);
@@ -27,32 +28,66 @@ const TVShowDetails = ({ route, navigation }) => {
         );
     }
 
-    const { title, poster_path, popularity, release_date, overview } = tvShowDetails;
+    const { original_name, poster_path, popularity, first_air_date, overview } = tvShowDetails;
 
     return (
-        <Center>
+        <Box style={styles.box}>
             <VStack>
-                <Heading>
-                    {title}
+                <Heading size='xl' style={styles.heading}>
+                    {original_name}
                 </Heading>
-                <Image
-                    mb="$6"
-                    h={240}
-                    width="$full"
-                    source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
-                    alt={title}
-                />
-                <Text>
+                <Center>
+                    <Image
+                        source={{ uri: `https://image.tmdb.org/t/p/w500${poster_path}` }}
+                        alt={original_name}
+                        size='2xl'
+                        style={styles.image}
+                    />
+                </Center>
+                <Text style={styles.overview}>
                     {overview}
                 </Text>
-                <HStack>
-                    <Text>Popularity: {popularity}</Text>
-                    <Divider orientation='vertical' mx={2} />
-                    <Text>Release date: {release_date}</Text>
+                <HStack style={styles.hstack}>
+                    <Text size='sm' style={styles.text}>
+                        Popularity: {popularity}
+                    </Text>
+                    <Divider orientation='vertical' style={styles.divider} />
+                    <Text size='sm' style={styles.text}>
+                        Release date: {first_air_date}
+                    </Text>
                 </HStack>
             </VStack>
-        </Center>
+        </Box>
     );
 };
+
+const styles = StyleSheet.create({
+    box: {
+        paddingLeft: 40,
+        paddingRight: 40
+    },
+    divider: {
+        marginLeft: 10,
+        marginRight: 10
+    },
+    heading: {
+        textAlign: 'center',
+        marginTop: 30,
+        marginBottom: 30
+    },
+    hstack: {
+        marginTop: 10,
+        flexShrink: 1
+    },
+    image: {
+        marginBottom: 20
+    },
+    overview: {
+        marginBottom: 6
+    },
+    text: {
+        fontWeight: 'bold'
+    }
+})
 
 export default TVShowDetails;

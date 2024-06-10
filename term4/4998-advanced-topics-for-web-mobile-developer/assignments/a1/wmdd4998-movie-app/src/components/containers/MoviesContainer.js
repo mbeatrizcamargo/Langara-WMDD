@@ -1,4 +1,4 @@
-import { Box, Center } from "@gluestack-ui/themed";
+import { Box } from "@gluestack-ui/themed";
 import SelectMovieType from "../forms/SelectMovieType";
 import { getShows } from "../../services/api";
 import { useState, useEffect } from "react";

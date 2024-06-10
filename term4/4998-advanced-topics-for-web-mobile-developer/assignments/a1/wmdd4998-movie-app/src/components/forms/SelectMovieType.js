@@ -16,10 +16,10 @@ const SelectMovieType = ({ onInputChange }) => {
         <SafeAreaView>
             <Box>
                 <Center>
-                    <Select my={20} onValueChange={handleValueChange} bg='white' w='60%'>
+                    <Select onValueChange={handleValueChange} style={styles.select}>
                         <SelectTrigger variant="outline" size="md">
                             <SelectInput placeholder="Select option" />
-                            <SelectIcon mr="$3">
+                            <SelectIcon style={styles.selectIcon}>
                                 <Icon as={ChevronDownIcon} />
                             </SelectIcon>
                         </SelectTrigger>
@@ -61,6 +61,15 @@ const SelectMovieType = ({ onInputChange }) => {
 const styles = StyleSheet.create({
     item: {
 
+    },
+    select: {
+        backgroundColor: 'white',
+        marginTop: 30,
+        marginBottom: 20,
+        width: '60%'
+    },
+    selectIcon: {
+        marginRight: 10
     }
 });
 
