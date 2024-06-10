@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Card, Center, Divider, HStack, Heading, Image, Text, VStack } from "@gluestack-ui/themed";
+import { Box, Center, Divider, HStack, Heading, Image, Text, VStack } from "@gluestack-ui/themed";
 import { getShows } from "../../services/api";
 import { StyleSheet } from "react-native";
 
@@ -48,11 +48,20 @@ const MovieDetails = ({ route, navigation }) => {
                     {overview}
                 </Text>
                 <HStack style={styles.hstack}>
-                    <Text size='sm' style={styles.text}>
+                    <Text
+                        size='sm'
+                        style={styles.text}
+                    >
                         Popularity: {popularity}
                     </Text>
-                    <Divider orientation='vertical' style={styles.divider} />
-                    <Text size='sm' style={styles.text}>
+                    <Divider
+                        orientation='vertical'
+                        style={styles.divider}
+                    />
+                    <Text
+                        size='sm'
+                        style={styles.text}
+                    >
                         Release date: {release_date}
                     </Text>
                 </HStack>

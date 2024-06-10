@@ -46,7 +46,7 @@ const TVShowCard = ({ image, title, popularity, releaseDate, url, navigation, id
 const styles = StyleSheet.create({
     button: {
         backgroundColor: '#00BFFF',
-        width: '90%',
+        width: 150,
         marginTop: 1,
         marginBottom: 1,
         paddingTop: 2,

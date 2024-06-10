@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import SearchForm from "../forms/SearchForm";
 import { useState } from "react";
 import SearchResultsContainer from "../containers/SearchResultsContainer";
+import { StyleSheet } from "react-native";
 
 const SearchResultsScreen = () => {
     const [typeOfShow, setTypeOfShow] = useState("");
@@ -17,16 +18,27 @@ const SearchResultsScreen = () => {
 
     return (
         <SafeAreaView>
-            <SearchForm handleSubmit={handleSubmit} />
+            <SearchForm handleSubmit={handleSubmit}/>
             {
                 isVisible ? (
-                    <Text>Please initiate a search</Text>
+                    <Text style={styles.text}>
+                        Please initiate a search
+                        </Text>
                 ) : (
-                    <SearchResultsContainer typeOfShow={typeOfShow} keyword={keyword} />
+                    <SearchResultsContainer typeOfShow={typeOfShow} keyword={keyword} width='100%' />
                 )
             }
         </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 23,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginTop: 100
+    }
+})
 
 export default SearchResultsScreen;

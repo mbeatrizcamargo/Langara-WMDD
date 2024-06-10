@@ -14,17 +14,21 @@ const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id 
                     <Heading size="sm" fontFamily="$heading" styles={styles.heading}>
                         {title}
                     </Heading>
-                    <Text style={styles.text}
+                    <Text
+                        style={styles.text}
                         fontSize="$sm"
-                        fontFamily="$heading"
                         lineHeight="$sm"
                     >
                         Popularity: {popularity}
                     </Text>
-                    <Text size="sm" fontFamily="$heading" mb="$1">
+                    <Text
+                    size="sm"
+                    fontFamily="$heading"
+                    style={styles.text}
+                    >
                         Release date: {releaseDate}
                     </Text>
-                    
+
                     <Button
                         style={styles.button}
                         variant="solid"
@@ -46,7 +50,7 @@ const MovieCard = ({ image, title, popularity, releaseDate, url, navigation, id 
 const styles = StyleSheet.create({
     button: {
         backgroundColor: '#00BFFF',
-        width: '90%',
+        width: 150,
         marginTop: 1,
         marginBottom: 1,
         paddingTop: 2,

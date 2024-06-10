@@ -1,8 +1,9 @@
-import { Center } from "@gluestack-ui/themed";
+import { Box, Center } from "@gluestack-ui/themed";
 import { searchShows } from "../../services/api";
 import { useState, useEffect } from "react";
 import SearchResultsList from "../lists/SearchResultsList";
 import Loading from "../layout/Loading";
+import { StyleSheet } from "react-native";
 
 const SearchResultsContainer = ({ typeOfShow, keyword }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -29,10 +30,17 @@ const SearchResultsContainer = ({ typeOfShow, keyword }) => {
     }, [typeOfShow, keyword]);
 
     return (
-        <Center>
+        <Box style={styles.main}>
             {isLoading ? <Loading /> : <SearchResultsList typeOfShow={typeOfShow} results={results} />}
-        </Center>
+        </Box>
     );
 };
+
+const styles = StyleSheet.create({
+    main: {
+        width: '100%',
+        backgroundColor: 'white'
+    }
+})
 
 export default SearchResultsContainer;
