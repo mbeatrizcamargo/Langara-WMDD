@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "push-notifications-poc",
-    "slug": "push-notifications-poc",
+    "slug": "expo-push-notifications-poc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,6 +22,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ca7fe24d-f1d9-41f3-9abf-4b32e2beca2a"
+      }
+    },
+    "owner": "mbeatrizcamargo"
   }
 }
