@@ -1,6 +1,6 @@
-import {ApolloServer} from '@apollo/server'
-import {ApolloServerPluginDrainHttpServer} from '@apollo/server/plugin/drainHttpServer'
-import {expressMiddleware} from '@apollo/server/express4'
+import { ApolloServer } from '@apollo/server'
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
+import { expressMiddleware } from '@apollo/server/express4'
 import http from 'http'
 import cors from 'cors'
 import bodyParser from 'body-parser'
@@ -12,12 +12,12 @@ const startApolloServer = async (typeDefs, resolvers) => {
 
     const httpServer = http.createServer(app)
 
-    const server = new ApolloServer({
+    const server = new ApolloServer({ 
         typeDefs,
         resolvers,
-        plugins: [ApolloServerPluginDrainHttpServer({httpServer})]
+        plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
     })
-    
+
     await server.start()
 
     app.use(
@@ -25,11 +25,11 @@ const startApolloServer = async (typeDefs, resolvers) => {
         cors(),
         bodyParser.json(),
         expressMiddleware(server, {
-            context: async({req}) => ({token: req.headers.token})
+            context: async ({ req }) => ({ token: req.headers.token })
         })
     )
 
-    await new Promise(resolve => httpServer.listen({port: 4000}, resolve))
+    await new Promise(resolve => httpServer.listen({ port: 4000 }, resolve))
 
     console.log(`server ready at http://localhost:4000/graphql`)
 }
