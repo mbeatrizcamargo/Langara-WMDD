@@ -1,0 +1,3 @@
+com.example.tipcalculator.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme
