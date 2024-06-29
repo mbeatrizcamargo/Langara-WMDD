@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ViewBinding</string>
+    <string name="euro_value">Euro Value!</string>
+</resources>
