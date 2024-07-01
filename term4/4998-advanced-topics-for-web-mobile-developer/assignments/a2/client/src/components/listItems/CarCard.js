@@ -41,6 +41,7 @@ const getStyles = () => ({
         border: '1px solid lightgrey',
         borderRadius: '3px',
         marginTop: '10px',
+        marginBottom: '10px',
         width: '100%'
     }
 })
