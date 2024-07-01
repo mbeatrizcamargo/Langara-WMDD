@@ -27,6 +27,7 @@ const PersonCard = props => {
                             <RemovePerson id={id} />
                         ]}
                     >
+                        
                         {firstName} {lastName}
                     </Card>
 

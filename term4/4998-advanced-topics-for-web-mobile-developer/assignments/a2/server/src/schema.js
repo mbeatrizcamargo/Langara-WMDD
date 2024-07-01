@@ -111,15 +111,21 @@ const people = [
     }
 
     type Query {
-        person(id: String!): Person
         people: [Person]
-        car(id: String!): Car
         cars: [Car]
+        personWithCars(id: String!): PersonWithCars
+    }
+
+    type PersonWithCars {
+      id: String!
+      firstName: String!
+      lastName: String!
+      cars: [Car]
     }
 
     type Mutation {
         addPerson(id: String!, firstName: String!, lastName: String!): Person
-        updatePerson(id: String!, firstName: String, lastName: String): Person
+        updatePerson(id: String!, firstName: String!, lastName: String!): Person
         removePerson(id: String!): Person
         addCar(id: String!, year: Int!, make: String!, model: String!, price: Float!, personId: String!): Car
         updateCar(id: String!, year: Int, make: String, model: String, price: Float, personId: String!): Car
@@ -131,17 +137,21 @@ const people = [
   const resolvers = {
     Query: {
         people: () => people,
-        person(root, args) {
-            return find(people, {id: args.id})
-        },
         cars: () => cars,
-        car(root, args) {
-            return find(cars, {id: args.id})
-        }
+        personWithCars: (root, args) => {
+          const person = people.find(person => person.id === args.id);
+          if (!person) {
+              throw new Error('Person not found');
+          }
+          const personCars = cars.filter(car => car.personId === args.id);
+          return {
+              ...person,
+              cars: personCars
+          };
+      }
     },
     Mutation: {
         // =================== PEOPLE =================== 
-        
         addPerson: (root, args) => {
             const newPerson = {
                 id: args.id,
@@ -198,10 +208,10 @@ const people = [
                 throw Error(`Couldn\'t find car with id ${args.id}`)
             }
 
-            car.year = args.year
-            car.make = args.make
-            car.model = args.model
-            car.price = args.price
+            // car.year = args.year
+            // car.make = args.make
+            // car.model = args.model
+            // car.price = args.price
             car.personId = args.personId
 
             return car
