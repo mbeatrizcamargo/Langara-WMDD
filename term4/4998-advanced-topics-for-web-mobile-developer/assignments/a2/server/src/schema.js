@@ -97,17 +97,17 @@ const people = [
   const typeDefs = `
     type Person {
         id: String!
-        firstName: String
-        lastName: String
+        firstName: String!
+        lastName: String!
     }
 
     type Car {
         id: String!
-        year: Int
-        make: String
-        model: String
-        price: Float
-        personId: String
+        year: Int!
+        make: String!
+        model: String!
+        price: Float!
+        personId: String!
     }
 
     type Query {
@@ -188,7 +188,7 @@ const people = [
                 price: args.price,
                 personId: args.personId
             }
-            people.push(newCar)
+            cars.push(newCar)
             return newCar
         },
         updateCar: (root, args) => {
