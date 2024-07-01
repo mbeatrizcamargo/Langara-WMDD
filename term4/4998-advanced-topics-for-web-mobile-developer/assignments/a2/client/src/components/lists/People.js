@@ -11,7 +11,7 @@ const People = () => {
     if (loading) return 'Loading...'
     if (error) return `Error! ${error.message}`
 
-    console.log('data', data)
+    // console.log('data', data)
 
     return (
         <List style={styles.list} grid={{ gutter: 20, column: 1 }}>
