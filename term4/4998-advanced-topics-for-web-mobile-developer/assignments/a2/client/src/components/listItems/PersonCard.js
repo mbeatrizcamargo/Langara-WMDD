@@ -25,6 +25,8 @@ const PersonCard = props => {
         setEditMode(!editMode)
     }
 
+    const title = `${firstName} ${lastName}`
+
     return (
         <div>
             {editMode ?
@@ -33,13 +35,12 @@ const PersonCard = props => {
                     <Card
                         size='small'
                         style={styles.card}
+                        title={title}
                         actions={[
                             <EditOutlined key='edit' onClick={handleButtonClick} />,
                             <RemovePerson id={id} />
                         ]}
                     >
-
-                        {firstName} {lastName}
                         {data.personWithCars.cars.map((car) => (
                             <CarCard key={car.id} id={car.jd} year={car.year} make={car.make} model={car.model} price={car.price} />
                         ))}

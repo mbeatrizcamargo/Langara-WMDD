@@ -23,7 +23,7 @@ const CarCard = props => {
                         size='small'
                         style={styles.card}
                         type='inner'
-                        title={`${year} ${make} ${model} -> $ ${price}`}
+                        title={`${year} ${make} ${model} -> $ ${Number(price).toLocaleString()}`}
                         actions={[
                             <EditOutlined key='edit' onClick={handleButtonClick} />,
                             <RemoveCar id={id} />
@@ -40,6 +40,7 @@ const getStyles = () => ({
     card: {
         border: '1px solid lightgrey',
         borderRadius: '3px',
+        marginTop: '10px',
         width: '100%'
     }
 })

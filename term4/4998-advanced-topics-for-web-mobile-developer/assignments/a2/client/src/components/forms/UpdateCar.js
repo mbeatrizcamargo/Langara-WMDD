@@ -1,7 +1,8 @@
-import { useMutation } from "@apollo/client"
-import { Button, Form, Input } from "antd"
+import { useMutation, useQuery } from "@apollo/client"
+import { Button, Form, Input, Select } from "antd"
 import { useEffect, useState } from "react"
-import { UPDATE_CAR } from "../../graphql/queries"
+import { UPDATE_CAR, GET_PEOPLE } from "../../graphql/queries"
+import { map } from 'lodash'
 
 const UpdateCar = props => {
     const { id, year, make, model, price, personId, onButtonClick } = props
@@ -9,6 +10,7 @@ const UpdateCar = props => {
     const [, forceUpdate] = useState()
 
     const [updateCar] = useMutation(UPDATE_CAR)
+    const { loading, error, data } = useQuery(GET_PEOPLE)
 
     useEffect(() => {
         forceUpdate()
@@ -28,6 +30,11 @@ const UpdateCar = props => {
         })
         onButtonClick()
     }
+
+    const personOptions = map(data?.people, person => ({
+        value: person.id,
+        label: `${person.firstName} ${person.lastName}`
+    })) || []
 
     return (
         <Form
@@ -50,7 +57,10 @@ const UpdateCar = props => {
                 <Input placeholder='Price' />
             </Form.Item>
             <Form.Item name='personId' rules={[{ required: true, message: 'please enter a personId' }]}>
-                <Input placeholder='Person' />
+            <Select
+                    options={personOptions}
+                    placeholder='Select a Person'
+                />
             </Form.Item>
             <Form.Item shouldUpdate={true}>
                 {() => (
