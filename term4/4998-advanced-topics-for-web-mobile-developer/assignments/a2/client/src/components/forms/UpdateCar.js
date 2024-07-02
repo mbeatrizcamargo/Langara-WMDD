@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client"
 import { Button, Form, Input, Select } from "antd"
 import { useEffect, useState } from "react"
-import { UPDATE_CAR, GET_PEOPLE } from "../../graphql/queries"
+import { UPDATE_CAR, GET_PEOPLE, GET_CARS } from "../../graphql/queries"
 
 const UpdateCar = props => {
     const { id, year, make, model, price, personId, onButtonClick } = props
@@ -37,7 +37,21 @@ const UpdateCar = props => {
                 price: parseFloat(price),
                 personId: newPersonId || personId
             },
-
+            update: (cache, { data: { updateCar } }) => {
+                const existingCars = cache.readQuery({ query: GET_CARS });
+          
+                // Update the cache with the updated car
+                const updatedCars = existingCars.cars.map((car) =>
+                  car.id === updateCar.id ? updateCar : car
+                );
+          
+                cache.writeQuery({
+                  query: GET_CARS,
+                  data: {
+                    cars: updatedCars,
+                  },
+                });
+            }
         }).catch(error => {
             console.error('Error in onFinish:', error);
         })
