@@ -1,47 +1,49 @@
 import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
-import { Card, Typography } from 'antd';
+import { Link, useParams } from 'react-router-dom';
+import { List, Typography } from 'antd';
 import { GET_PERSON_WITH_CARS } from '../../graphql/queries';
-import { useState } from 'react';
 
 const PersonShow = () => {
   const { personId } = useParams();
-
   const styles = getStyles();
 
   const { loading, error, data } = useQuery(GET_PERSON_WITH_CARS, {
     variables: { id: personId }
   });
+
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
+  const { firstName, lastName, cars } = data.personWithCars;
+  const title = `${firstName} ${lastName}`;
+
   return (
     <div>
-      <Card
-        style={styles.card}
-        title={`${data.personWithCars.firstName} ${data.personWithCars.lastName}`}
-      >
-        {data.personWithCars.cars.map((car) => (
-          <div key={car.id}>
-            <Card type='inner' style={styles.innerCard}>
-                <Typography>{`${car.year} ${car.make} ${car.model} -> $ ${Number(car.price).toLocaleString()}`}</Typography>
-            </Card>
-          </div>
-        ))}
-      </Card>
+      <Typography style={styles.title}>{title}</Typography>
+      <List>
+      {cars.map((car) => (
+          <List.Item style={styles.item} key={car.id}>{`${car.year} ${car.make} ${car.model} -> $ ${Number(car.price).toLocaleString()}`}</List.Item>
+
+      ))}
+      </List>
+      <Link to={`/`}>
+        Go Back Home
+      </Link>
     </div>
   );
 };
 
 const getStyles = () => ({
-  card: {
-    border: '1px solid lightgrey',
-    borderRadius: '3px',
-    width: '100%'
+  title: {
+    fontSize: '30px',
+    fontWeight: 'bold',
+    margin: '20px 0'
   },
-  innerCard: {
-    margin: '10px'
-  }
+  item: {
+    border: 'none',
+    fontSize: '20px',
+    margin: '15px 0',
+  },
 });
 
 export default PersonShow;

@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Button, Form, Input, Select, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { ADD_CAR, GET_CARS, GET_PEOPLE, GET_PERSON_WITH_CARS } from "../../graphql/queries";
+import { ADD_CAR, GET_CARS, GET_PEOPLE } from "../../graphql/queries";
 import { map } from 'lodash';
 
 const AddCar = () => {
@@ -10,14 +10,13 @@ const AddCar = () => {
 
     const [id] = useState(uuidv4());
     const [form] = Form.useForm();
-    const [, forceUpdate] = useState();
 
     const [addCar] = useMutation(ADD_CAR);
     const { loading, error, data } = useQuery(GET_PEOPLE);
 
     useEffect(() => {
-        forceUpdate({});
-    }, []);
+        form.resetFields();
+    }, [data, form]);
 
     const onFinish = values => {
         const { year, make, model, price, personId } = values;
@@ -32,46 +31,43 @@ const AddCar = () => {
                 personId
             },
             update: (cache, { data: { addCar } }) => {
-                // Update the list of cars
-                const data = cache.readQuery({ query: GET_CARS });
-                if (data && data.cars) {
-                    cache.writeQuery({
-                        query: GET_CARS,
-                        data: {
-                            ...data,
-                            cars: [...data.cars, addCar]
-                        }
-                    });
-                }
+                const existingCars = cache.readQuery({ query: GET_CARS });
 
-                // Update the person's list of cars
-                const personData = cache.readQuery({ 
-                    query: GET_PERSON_WITH_CARS, 
-                    variables: { id: personId } 
+                cache.writeQuery({
+                    query: GET_CARS,
+                    data: {
+                        cars: [...existingCars.cars, addCar]
+                    }
                 });
-                if (personData && personData.personWithCars) {
-                    cache.writeQuery({
-                        query: GET_PERSON_WITH_CARS,
-                        variables: { id: personId },
-                        data: {
-                            ...personData,
-                            personWithCars: {
-                                ...personData.personWithCars,
-                                cars: [...personData.personWithCars.cars, addCar]
+
+                const existingPeople = cache.readQuery({ query: GET_PEOPLE });
+
+                cache.writeQuery({
+                    query: GET_PEOPLE,
+                    data: {
+                        people: existingPeople.people.map(person => {
+                            if (person.id === personId) {
+                                return {
+                                    ...person,
+                                    cars: person.cars ? [...person.cars, addCar] : [addCar] 
+                                };
                             }
-                        }
-                    });
-                }
+                            return person;
+                        })
+                    }
+                });
             }
         });
-
-        form.resetFields();
     };
 
-    const personOptions = map(data?.people, person => ({
+    if (loading) return null;
+    if (error) return `Error! ${error.message}`;
+    if (!data || !data.people || data.people.length === 0) return null;
+
+    const personOptions = map(data.people, person => ({
         value: person.id,
         label: `${person.firstName} ${person.lastName}`
-    })) || [];
+    }));
 
     return (
         <>
@@ -119,7 +115,7 @@ const AddCar = () => {
                 <Form.Item
                     name='personId'
                     label='Person'
-                    style={{ width: '15%' }}
+                    style={styles.formItem}
                     rules={[{ required: true, message: 'Please select a person' }]}
                 >
                     <Select
@@ -161,10 +157,12 @@ const getStyles = () => ({
         width: '100%'
     },
     formItem: {
-        flexShrink: 2,
+        display: 'flex',
+        flexShrink: 1,
         marginRight: '5px',
     },
-    formInput: {}
+    formInput: {
+    }
 });
 
 export default AddCar;

@@ -27,7 +27,7 @@ const AddPerson = () => {
                 id, firstName, lastName
             },
 
-            update: (cache, {data: {addPerson}}) => { //update UI upon submitting the form - graphQL cache manipulation
+            update: (cache, {data: {addPerson}}) => {
                 const data = cache.readQuery({query: GET_PEOPLE})
                 cache.writeQuery({
                     query: GET_PEOPLE,

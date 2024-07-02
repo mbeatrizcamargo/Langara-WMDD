@@ -98,7 +98,7 @@ const UpdateCar = props => {
                         type='primary'
                         htmlType='submit'
                         disabled={
-                            (!form.isFieldTouched('year') && !form.isFieldTouched('make') && !form.isFieldTouched('model') && !form.isFieldTouched('price') && !form.isFieldTouched('person')) || form.getFieldsError().filter(({ errors }) => errors.length).length
+                            (!form.isFieldTouched('year') && !form.isFieldTouched('make') && !form.isFieldTouched('model') && !form.isFieldTouched('price') && !form.isFieldTouched('personId')) || form.getFieldsError().filter(({ errors }) => errors.length).length
                         }
                     >
                         Update Car

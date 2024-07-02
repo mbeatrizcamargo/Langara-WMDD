@@ -5,15 +5,12 @@ import People from "../lists/People";
 
 function Index() {
     return (
-
         <>
             <Title />
             <AddPerson />
             <AddCar />
             <People />
         </>
-
-
     );
 }
 

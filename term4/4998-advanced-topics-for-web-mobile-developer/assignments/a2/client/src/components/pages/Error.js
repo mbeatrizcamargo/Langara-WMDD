@@ -1,8 +1,6 @@
 import { Typography } from "antd";
 import { useRouteError } from "react-router-dom";
 
-
-
 function Error() {
     const styles = getStyles()
     const error = useRouteError();
