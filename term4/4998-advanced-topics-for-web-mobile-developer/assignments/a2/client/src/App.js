@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: "people/:personId",
-    element: <PersonShow />,
+    element: <PersonShow />
   },
 ]);
 

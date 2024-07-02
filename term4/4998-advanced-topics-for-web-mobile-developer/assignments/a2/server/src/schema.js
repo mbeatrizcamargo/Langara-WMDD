@@ -208,10 +208,10 @@ const people = [
                 throw Error(`Couldn\'t find car with id ${args.id}`)
             }
 
-            // car.year = args.year
-            // car.make = args.make
-            // car.model = args.model
-            // car.price = args.price
+            car.year = args.year
+            car.make = args.make
+            car.model = args.model
+            car.price = args.price
             car.personId = args.personId
 
             return car
