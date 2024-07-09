@@ -3,15 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mywebview"
+    namespace = "com.example.implicitintent"
     compileSdk = 34
 
-    buildFeatures {
-        viewBinding = true
-    }
-
     defaultConfig {
-        applicationId = "com.example.mywebview"
+        applicationId = "com.example.implicitintent"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
